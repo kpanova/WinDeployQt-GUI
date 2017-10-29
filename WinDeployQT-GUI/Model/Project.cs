@@ -23,6 +23,26 @@ namespace WinDeployQT_GUI.Model
         public void Set()
         {
         }
-        
+        public void getExeDestination()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.InitialDirectory = @"C:\Users";
+            fileDialog.Filter = "exe files (*.exe)|*.exe";
+            fileDialog.FilterIndex = 2;
+            fileDialog.RestoreDirectory = true;
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    fileLink = fileDialog.FileName;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
+            }
+            RaisePropertyChanged("fileLink");
+        }
+
     }
 }

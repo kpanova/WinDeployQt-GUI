@@ -43,21 +43,54 @@ namespace WinDeployQT_GUI.Model
         public void Run()
         {
             winDeployQT = new Process();
-            winDeployQT.StartInfo = new ProcessStartInfo(fileLink, StaticEntity.userProject.fileLink);
-            winDeployQT.Start();
-            winDeployQT.OutputDataReceived += (s, e) =>  //здесь подписываемся на событие "что-то появилось в выводе консоли"
+            winDeployQT.StartInfo = new ProcessStartInfo(@"C:\Windows\System32\cmd.exe", " /A /Q /K " + fileLink)
             {
-                if (!string.IsNullOrEmpty(e.Data))
+                UseShellExecute = false,
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true
+            };
+            StreamWriter streamWriter;
+            StreamReader streamReader;
+            if (winDeployQT.Start())
+            {
+                streamWriter = winDeployQT.StandardInput;
+                string inputText = "windeployqt " + StaticEntity.userProject.fileLink;
+                streamWriter.WriteLineAsync(inputText);
+                streamReader = winDeployQT.StandardOutput;
+                foreach (var str in streamReader.ReadLine())
                 {
-                    WinDeployQtText += e.Data;
+                    WinDeployQtText += str;
                     RaisePropertyChanged("WinDeployQtText");
                 }
-            };
-            winDeployQT.Close();
+            }
+            winDeployQT.Kill();
+            WinDeployQtText += "Deploy is OK!";
+            RaisePropertyChanged("WinDeployQtText");
+
         }
 
         public void Set()
         {
+        }
+        public void getExeDestination()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.InitialDirectory = @"C:\Qt\Qt5.8.0\5.8\mingw53_32\bin";
+            fileDialog.Filter = "bat files (*.bat)|*.bat";
+            fileDialog.FilterIndex = 2;
+            fileDialog.RestoreDirectory = true;
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    fileLink = fileDialog.FileName;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
+            }
+            RaisePropertyChanged("fileLink");
         }
     }
 }

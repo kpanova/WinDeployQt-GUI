@@ -12,7 +12,13 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <WinDeployQT_GUI:GetLinkUserControl HorizontalAlignment="Stretch" Margin="0"/>
-        <RichTextBox Name="WinDeployQtOut" Margin="5" Grid.Row="1" DataContext="{Binding WinDeployQtText}"></RichTextBox>
+        <RichTextBox Margin="5" Grid.Row="1">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="{Binding WinDeployQtText}"></Run>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
         <Button Content="Deploy" Grid.Row="2" Width="100" HorizontalAlignment="Center" Margin="5" Command="{Binding Deploy}" TabIndex="3"></Button>
     </Grid>
 </UserControl>
