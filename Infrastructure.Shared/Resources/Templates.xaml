@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <ControlTemplate x:Key="WaitControlTemplate">
+        <Border BorderThickness="0"
+                BorderBrush="{x:Static SystemColors.ControlDarkDarkBrush}">
+            <StackPanel HorizontalAlignment="Center" 
+                       VerticalAlignment="Center">
+                <TextBlock Text="Идет загрузка..." Foreground="Black" FontFamily="Calibri"/>
+                <Image Width="40" 
+                       Height="40" 
+                       Margin="20,0"
+                       SnapsToDevicePixels="True"
+                       Source="/Infrastructure.Shared;component/Images/loading_16.png">
+                    <Image.RenderTransform>
+                        <RotateTransform CenterX="20" CenterY="20" />
+                    </Image.RenderTransform>
+                    <Image.Triggers>
+                        <EventTrigger RoutedEvent="Image.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Image.RenderTransform).(RotateTransform.Angle)"
+                                                                   RepeatBehavior="Forever"
+                                                                   SpeedRatio="1">
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.0625" Value="22.5" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.125" Value="45" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.1875" Value="67.5" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.25" Value="90" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.3125" Value="112.5" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.375" Value="135" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.4375" Value="157.5" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="180" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.5625" Value="202.5" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.625" Value="225" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.6875" Value="247.5" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.75" Value="270" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.8125" Value="292.5" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.875" Value="315" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.9375" Value="337.5" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="360" />
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Image.Triggers>
+                </Image>
+            </StackPanel>
+        </Border>
+    </ControlTemplate>
+    
+</ResourceDictionary>
