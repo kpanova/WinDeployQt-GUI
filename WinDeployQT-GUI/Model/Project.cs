@@ -13,7 +13,7 @@ namespace WinDeployQT_GUI.Model
     {
         public Project()
         {
-            actionName = "Chose destination of your project:";
+            actionName = "Choose destination of your project:";
             getDestination = new RelayCommand(args => getExeDestination());
         }
         public void Get()

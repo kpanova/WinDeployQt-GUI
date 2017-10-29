@@ -32,6 +32,7 @@ namespace WinDeployQT_GUI.Model
 
         public WinDeployQT()
         {
+            actionName = "Choose destination of qtenv2.bat:";
             getDestination = new RelayCommand(args => getExeDestination());
             Deploy = new RelayCommand(args => Run());
         }
@@ -47,23 +48,30 @@ namespace WinDeployQT_GUI.Model
             {
                 UseShellExecute = false,
                 RedirectStandardInput = true,
-                RedirectStandardOutput = true
+                RedirectStandardOutput = true,
+                WindowStyle = ProcessWindowStyle.Hidden,
+                CreateNoWindow = true
             };
             StreamWriter streamWriter;
             StreamReader streamReader;
             if (winDeployQT.Start())
             {
+                WinDeployQtText += "winDeployQT run";
+                RaisePropertyChanged("WinDeployQtText");
                 streamWriter = winDeployQT.StandardInput;
                 string inputText = "windeployqt " + StaticEntity.userProject.fileLink;
                 streamWriter.WriteLine();
                 streamWriter.WriteLine(inputText);
                 streamWriter.Close();
                 streamReader = winDeployQT.StandardOutput;
-                WinDeployQtText += streamReader.ReadToEnd();
-                RaisePropertyChanged("WinDeployQtText");
+                while (!streamReader.EndOfStream)
+                {
+                    WinDeployQtText += "\n" + streamReader.ReadLine();
+                    RaisePropertyChanged("WinDeployQtText");
+                }
                 //streamWriter.WriteLine(outputText);
             }
-            WinDeployQtText += "\n Deploy is OK!";
+            WinDeployQtText += "\nDeploy is OK!";
             RaisePropertyChanged("WinDeployQtText");
             winDeployQT.WaitForExit();
             //winDeployQT.CloseMainWindow();

@@ -12,10 +12,10 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <WinDeployQT_GUI:GetLinkUserControl HorizontalAlignment="Stretch" Margin="0"/>
-        <RichTextBox Margin="5" Grid.Row="1">
+        <RichTextBox Margin="5" Grid.Row="1" VerticalScrollBarVisibility="Auto" >
             <FlowDocument>
                 <Paragraph>
-                    <Run Text="{Binding WinDeployQtText}"></Run>
+                    <Run Text="{Binding WinDeployQtText}" ></Run>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>

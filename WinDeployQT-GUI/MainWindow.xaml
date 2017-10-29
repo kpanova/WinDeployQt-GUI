@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.galasoft.ch/ignore"
         mc:Ignorable="d ignore"
-        Height="500"
-        MaxHeight="700"
-        MinWidth="500"
+        Height="700"
+        MaxHeight="800"
+        MinWidth="600"
         MaxWidth="700"        
         Title="WinDeployQT-GUI"
         FontSize="16">
