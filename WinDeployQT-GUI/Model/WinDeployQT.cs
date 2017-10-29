@@ -55,17 +55,18 @@ namespace WinDeployQT_GUI.Model
             {
                 streamWriter = winDeployQT.StandardInput;
                 string inputText = "windeployqt " + StaticEntity.userProject.fileLink;
-                streamWriter.WriteLineAsync(inputText);
+                streamWriter.WriteLine();
+                streamWriter.WriteLine(inputText);
+                streamWriter.Close();
                 streamReader = winDeployQT.StandardOutput;
-                foreach (var str in streamReader.ReadLine())
-                {
-                    WinDeployQtText += str;
-                    RaisePropertyChanged("WinDeployQtText");
-                }
+                WinDeployQtText += streamReader.ReadToEnd();
+                RaisePropertyChanged("WinDeployQtText");
+                //streamWriter.WriteLine(outputText);
             }
-            winDeployQT.Kill();
-            WinDeployQtText += "Deploy is OK!";
+            WinDeployQtText += "\n Deploy is OK!";
             RaisePropertyChanged("WinDeployQtText");
+            winDeployQT.WaitForExit();
+            //winDeployQT.CloseMainWindow();
 
         }
 
