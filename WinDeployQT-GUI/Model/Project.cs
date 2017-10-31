@@ -35,6 +35,7 @@ namespace WinDeployQT_GUI.Model
                 try
                 {
                     fileLink = fileDialog.FileName;
+                    Data.Resource1.String1 = "124";
                 }
                 catch (Exception ex)
                 {

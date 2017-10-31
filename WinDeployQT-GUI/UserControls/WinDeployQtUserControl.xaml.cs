@@ -24,5 +24,10 @@ namespace WinDeployQT_GUI.UserControls
         {
             InitializeComponent();
         }
+
+        private void RichTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            WinDeployQt_status.ScrollToEnd();
+        }
     }
 }
