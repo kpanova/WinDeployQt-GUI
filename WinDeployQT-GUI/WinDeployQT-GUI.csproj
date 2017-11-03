@@ -72,6 +72,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BaseViewModel.cs" />
+    <Compile Include="Datas\Configuration.cs" />
+    <Compile Include="Datas\ConfigurationList.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="Interfaces\IDataSetter.cs" />
     <Compile Include="Model\BaseProgram.cs" />
@@ -152,8 +154,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\Data.xml" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

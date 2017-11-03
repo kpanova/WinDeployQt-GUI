@@ -35,6 +35,7 @@ namespace WinDeployQT_GUI.Model
             actionName = "Choose destination of qtenv2.bat:";
             getDestination = new RelayCommand(args => getExeDestination());
             Deploy = new RelayCommand(args => Run());
+            fileLink = @"C:\\";
         }
         
 
@@ -84,7 +85,7 @@ namespace WinDeployQT_GUI.Model
         public void getExeDestination()
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.InitialDirectory = @"C:\Qt\Qt5.8.0\5.8\mingw53_32\bin";
+            fileDialog.InitialDirectory = fileLink;
             fileDialog.Filter = "bat files (*.bat)|*.bat";
             fileDialog.FilterIndex = 2;
             fileDialog.RestoreDirectory = true;

@@ -15,6 +15,7 @@ namespace WinDeployQT_GUI.Model
         {
             actionName = "Choose destination of your project:";
             getDestination = new RelayCommand(args => getExeDestination());
+            fileLink = @"C:\Users";
         }
         public void Get()
         {
@@ -26,7 +27,7 @@ namespace WinDeployQT_GUI.Model
         public void getExeDestination()
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.InitialDirectory = @"C:\Users";
+            fileDialog.InitialDirectory = fileLink;
             fileDialog.Filter = "exe files (*.exe)|*.exe";
             fileDialog.FilterIndex = 2;
             fileDialog.RestoreDirectory = true;
@@ -35,7 +36,6 @@ namespace WinDeployQT_GUI.Model
                 try
                 {
                     fileLink = fileDialog.FileName;
-                    Data.Resource1.String1 = "124";
                 }
                 catch (Exception ex)
                 {
