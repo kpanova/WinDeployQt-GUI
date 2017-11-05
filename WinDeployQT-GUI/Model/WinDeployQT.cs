@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
-using WinDeployQT_GUI.Interfaces;
 using WinDeployQT_GUI.StaticClasses;
 using Infrastructure.Shared.Commands;
+using WinDeployQT_GUI.Datas;
 
 namespace WinDeployQT_GUI.Model
 {
-    public class WinDeployQT : BaseProgram, IDataGetter, IDataSetter
+    public class WinDeployQT : BaseProgram
     {
         private Process _winDeployQT;
         public Process winDeployQT
@@ -35,17 +35,21 @@ namespace WinDeployQT_GUI.Model
             actionName = "Choose destination of qtenv2.bat:";
             getDestination = new RelayCommand(args => getExeDestination());
             Deploy = new RelayCommand(args => Run());
-            fileLink = @"C:\\";
-        }
-        
+            try
+            {
+                fileLink = StaticEntity.AppConfigurationSettings.LoadSettings(this.GetType().ToString()); //StaticEntity.configurationDictionary[this.GetType().ToString()];
 
-        public void Get()
-        {
-        }
+            }
+            catch
+            {
+                fileLink = Environment.GetEnvironmentVariable("HOMEPATH");
+            }
+        }        
+
         public void Run()
         {
             winDeployQT = new Process();
-            winDeployQT.StartInfo = new ProcessStartInfo(@"C:\Windows\System32\cmd.exe", " /A /Q /K " + fileLink)
+            winDeployQT.StartInfo = new ProcessStartInfo(Environment.GetEnvironmentVariable("ComSpec"), " /A /Q /K " + fileLink) //#TODO применить переменную окружения ComSpec
             {
                 UseShellExecute = false,
                 RedirectStandardInput = true,
@@ -75,13 +79,8 @@ namespace WinDeployQT_GUI.Model
             WinDeployQtText += "\nDeploy is OK!";
             RaisePropertyChanged("WinDeployQtText");
             winDeployQT.WaitForExit();
-            //winDeployQT.CloseMainWindow();
-
         }
 
-        public void Set()
-        {
-        }
         public void getExeDestination()
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
@@ -101,6 +100,11 @@ namespace WinDeployQT_GUI.Model
                 }
             }
             RaisePropertyChanged("fileLink");
+            try
+            {
+                StaticEntity.AppConfigurationSettings.Save(GetType().ToString(), fileLink.Replace(fileDialog.SafeFileName, ""));
+            }
+            catch { }
         }
     }
 }

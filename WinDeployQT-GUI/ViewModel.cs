@@ -13,7 +13,7 @@ namespace WinDeployQT_GUI
         public BaseProgram winDeployQt { get; set; }
 
         public ViewModel()
-        {            
+        {
             userProject = new Project();
             winDeployQt = new WinDeployQT();
             StaticClasses.StaticEntity.userProject = userProject;

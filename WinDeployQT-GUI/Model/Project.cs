@@ -4,25 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinDeployQT_GUI.Interfaces;
 using Infrastructure.Shared.Commands;
+using WinDeployQT_GUI.Datas;
+using WinDeployQT_GUI.StaticClasses;
 
 namespace WinDeployQT_GUI.Model
 {
-    public class Project : BaseProgram, IDataGetter, IDataSetter
+    public class Project : BaseProgram
     {
         public Project()
         {
             actionName = "Choose destination of your project:";
             getDestination = new RelayCommand(args => getExeDestination());
-            fileLink = @"C:\Users";
-        }
-        public void Get()
-        {
-        }
+            try
+            {
+                fileLink = StaticEntity.AppConfigurationSettings.LoadSettings(this.GetType().ToString()); //StaticEntity.configurationDictionary[this.GetType().ToString()];
 
-        public void Set()
-        {
+            }
+            catch {
+                fileLink = Environment.GetEnvironmentVariable("HOMEPATH");
+            }
         }
         public void getExeDestination()
         {
@@ -43,6 +44,11 @@ namespace WinDeployQT_GUI.Model
                 }
             }
             RaisePropertyChanged("fileLink");
+            try
+            {
+                StaticEntity.AppConfigurationSettings.Save(GetType().ToString(), fileLink.Replace(fileDialog.SafeFileName, ""));
+            }
+            catch { }
         }
 
     }
