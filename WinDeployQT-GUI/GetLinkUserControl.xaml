@@ -15,7 +15,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="110"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{Binding fileLink, Mode=TwoWay}" HorizontalAlignment="Left" MinWidth="300" Margin="5" Height="30"></TextBlock>
+            <TextBlock Text="{Binding fileLink, Mode=TwoWay}" ToolTip="{Binding fileLink}" HorizontalAlignment="Left" MinWidth="300" Margin="5" Height="30"></TextBlock>
             <Button Command="{Binding getDestination}" Content="Choose file..." Margin="5" TabIndex="1" Grid.Column="1"></Button>
         </Grid>
     </Grid>
