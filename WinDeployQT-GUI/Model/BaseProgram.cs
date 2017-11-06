@@ -12,8 +12,6 @@ namespace WinDeployQT_GUI.Model
     {
         public string actionName { get; set; }
         public string fileLink { get; set; }
-        public ICommand getDestination { get; set; }
-        public event UI RunDeploy;
-        
+        public ICommand getDestination { get; set; }        
     }
 }
