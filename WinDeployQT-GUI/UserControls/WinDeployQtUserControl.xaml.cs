@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WinDeployQT_GUI.UserControls
+namespace WinDeployQt_GUI.UserControls
 {
     /// <summary>
     /// Логика взаимодействия для WinDeployQtUserControl.xaml

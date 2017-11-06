@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WinDeployQT_GUI
+namespace WinDeployQt_GUI
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml

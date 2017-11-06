@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinDeployQT-GUI", "WinDeployQT-GUI\WinDeployQT-GUI.csproj", "{A9D4EF9E-F60E-4A0B-8107-5AA581780305}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinDeployQt-GUI", "WinDeployQT-GUI\WinDeployQt-GUI.csproj", "{A9D4EF9E-F60E-4A0B-8107-5AA581780305}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Shared", "Infrastructure.Shared\Infrastructure.Shared.csproj", "{69036502-1DA1-425B-A2F2-D2FEA2520CEF}"
 EndProject

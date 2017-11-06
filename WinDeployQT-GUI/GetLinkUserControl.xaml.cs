@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WinDeployQT_GUI
+namespace WinDeployQt_GUI
 {
     /// <summary>
     /// Логика взаимодействия для GetLinkUserControl.xaml

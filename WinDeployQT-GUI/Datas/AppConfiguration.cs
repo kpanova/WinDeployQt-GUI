@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace WinDeployQT_GUI.Datas
+namespace WinDeployQt_GUI.Datas
 {
     public class AppConfiguration
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace WinDeployQT_GUI
+namespace WinDeployQt_GUI
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

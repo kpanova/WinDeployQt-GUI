@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
-using WinDeployQT_GUI.StaticClasses;
+using WinDeployQt_GUI.StaticClasses;
 using Infrastructure.Shared.Commands;
-using WinDeployQT_GUI.Datas;
+using WinDeployQt_GUI.Datas;
 
-namespace WinDeployQT_GUI.Model
+namespace WinDeployQt_GUI.Model
 {
     public class WinDeployQT : BaseProgram
     {
@@ -27,18 +27,18 @@ namespace WinDeployQT_GUI.Model
         public Project userProject { get; set; }
         public ICommand Deploy { get; set; }
 
-        private string _winDeployQtText;
+        private string _winDeployQtText="Results... \n";
         public string WinDeployQtText { get => _winDeployQtText; set => _winDeployQtText = value; }
+        private string qtenv2Link = "qtenv2.bat";
 
         public WinDeployQT()
         {
-            actionName = "Choose destination of qtenv2.bat:";
+            actionName = "Choose destination of windeployqt.exe:";
             getDestination = new RelayCommand(args => getExeDestination());
             Deploy = new RelayCommand(args => Run());
             try
             {
                 fileLink = StaticEntity.AppConfigurationSettings.LoadSettings(this.GetType().ToString()); //StaticEntity.configurationDictionary[this.GetType().ToString()];
-
             }
             catch
             {
@@ -48,8 +48,9 @@ namespace WinDeployQT_GUI.Model
 
         public void Run()
         {
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
             winDeployQT = new Process();
-            winDeployQT.StartInfo = new ProcessStartInfo(Environment.GetEnvironmentVariable("ComSpec"), " /A /Q /K " + fileLink) //#TODO применить переменную окружения ComSpec
+            winDeployQT.StartInfo = new ProcessStartInfo(Environment.GetEnvironmentVariable("ComSpec"), " /A /Q /K " + qtenv2Link + "qtenv2.bat")
             {
                 UseShellExecute = false,
                 RedirectStandardInput = true,
@@ -61,7 +62,7 @@ namespace WinDeployQT_GUI.Model
             StreamReader streamReader;
             if (winDeployQT.Start())
             {
-                WinDeployQtText += "winDeployQT run";
+                WinDeployQtText += "winDeployQT run\n";
                 RaisePropertyChanged("WinDeployQtText");
                 streamWriter = winDeployQT.StandardInput;
                 string inputText = "windeployqt " + StaticEntity.userProject.fileLink;
@@ -74,18 +75,18 @@ namespace WinDeployQT_GUI.Model
                     WinDeployQtText += "\n" + streamReader.ReadLine();
                     RaisePropertyChanged("WinDeployQtText");
                 }
-                //streamWriter.WriteLine(outputText);
             }
             WinDeployQtText += "\nDeploy is OK!";
             RaisePropertyChanged("WinDeployQtText");
             winDeployQT.WaitForExit();
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
 
         public void getExeDestination()
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.InitialDirectory = fileLink;
-            fileDialog.Filter = "bat files (*.bat)|*.bat";
+            fileDialog.Filter = "exe files (*.exe)|*.exe";
             fileDialog.FilterIndex = 2;
             fileDialog.RestoreDirectory = true;
             if (fileDialog.ShowDialog() == DialogResult.OK)
@@ -99,12 +100,13 @@ namespace WinDeployQT_GUI.Model
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
-            RaisePropertyChanged("fileLink");
             try
             {
-                StaticEntity.AppConfigurationSettings.Save(GetType().ToString(), fileLink.Replace(fileDialog.SafeFileName, ""));
+                qtenv2Link = fileLink.Replace(fileDialog.SafeFileName, "");
+                StaticEntity.AppConfigurationSettings.Save(GetType().ToString(), qtenv2Link);
             }
             catch { }
+            RaisePropertyChanged("fileLink");
         }
     }
 }

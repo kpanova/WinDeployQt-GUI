@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="WinDeployQT_GUI.GetLinkUserControl"
+﻿<UserControl x:Class="WinDeployQt_GUI.GetLinkUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WinDeployQT_GUI">
+             xmlns:local="clr-namespace:WinDeployQt_GUI">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -15,8 +15,8 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="110"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{Binding fileLink, Mode=TwoWay}" ToolTip="{Binding fileLink}" HorizontalAlignment="Left" MinWidth="300" Margin="5" Height="30"></TextBlock>
-            <Button Command="{Binding getDestination}" Content="Choose file..." Margin="5" TabIndex="1" Grid.Column="1"></Button>
+            <TextBox Text="{Binding fileLink, Mode=TwoWay}" ToolTip="{Binding fileLink}" HorizontalAlignment="Stretch" Margin="5" Height="30" ></TextBox>
+            <Button Command="{Binding getDestination}" Content="Select file..." Margin="5" TabIndex="1" Grid.Column="1"></Button>
         </Grid>
     </Grid>
 </UserControl>

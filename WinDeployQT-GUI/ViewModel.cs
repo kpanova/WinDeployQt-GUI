@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WinDeployQT_GUI.Model;
+using WinDeployQt_GUI.Model;
 
-namespace WinDeployQT_GUI
+namespace WinDeployQt_GUI
 {
     public class ViewModel : BaseViewModel
     {

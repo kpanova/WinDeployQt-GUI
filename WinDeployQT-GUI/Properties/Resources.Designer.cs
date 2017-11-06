@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WinDeployQT_GUI.Properties {
+namespace WinDeployQt_GUI.Properties {
     using System;
     
     

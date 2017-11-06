@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Infrastructure.Shared.Commands;
-using WinDeployQT_GUI.Datas;
-using WinDeployQT_GUI.StaticClasses;
+using WinDeployQt_GUI.Datas;
+using WinDeployQt_GUI.StaticClasses;
 
-namespace WinDeployQT_GUI.Model
+namespace WinDeployQt_GUI.Model
 {
     public class Project : BaseProgram
     {

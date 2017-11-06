@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
-using WinDeployQT_GUI.Model;
-using WinDeployQT_GUI.Datas;
+using WinDeployQt_GUI.Model;
+using WinDeployQt_GUI.Datas;
 
-namespace WinDeployQT_GUI.StaticClasses
+namespace WinDeployQt_GUI.StaticClasses
 {
     public static class StaticEntity
     {

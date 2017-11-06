@@ -14,10 +14,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SimpleConfig;
 using System.Configuration;
-using WinDeployQT_GUI.Datas;
-using WinDeployQT_GUI.StaticClasses;
+using WinDeployQt_GUI.Datas;
+using WinDeployQt_GUI.StaticClasses;
 
-namespace WinDeployQT_GUI
+namespace WinDeployQt_GUI
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml

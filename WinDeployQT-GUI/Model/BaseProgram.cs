@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 
-namespace WinDeployQT_GUI.Model
+namespace WinDeployQt_GUI.Model
 {
     public class BaseProgram : BaseViewModel
     {
